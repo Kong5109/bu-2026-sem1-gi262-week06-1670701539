@@ -51,7 +51,35 @@ namespace MidtermExam.Prob03
         public bool SwapQueue(LinkedList<Player> turnQueue, Player targetPlayer, Player afterPlayer)
         {
             // TODO: ให้นักศึกษา Implement การจัดการสลับลำดับของ Node ใน LinkedList<Player>
-            return false;
+            if (turnQueue == null)
+            {
+                return false;
+            }
+            if (targetPlayer == null || afterPlayer == null)
+            {
+                return false;
+            }
+            if (turnQueue.Count < 2)
+            {
+                return false;
+            }
+            if (targetPlayer == afterPlayer)
+            {
+                return false;
+            }
+            if (!turnQueue.Contains(targetPlayer) || !turnQueue.Contains(afterPlayer))
+            {
+                return false;
+            }
+            /*if (turnQueue.Find(afterPlayer).Next.Value == targetPlayer)
+            {
+                return true;
+            }*/
+
+            LinkedListNode<Player> afterPlayerNode = turnQueue.Find(afterPlayer);
+            turnQueue.Remove(targetPlayer);
+            turnQueue.AddAfter(afterPlayerNode, targetPlayer);
+            return true;
         }
 
 
